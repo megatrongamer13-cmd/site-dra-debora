@@ -86,7 +86,7 @@ faqItems.forEach(item => {
 });
 
 /* ============================================================
-   SCROLL ANIMATIONS — IntersectionObserver
+   SCROLL ANIMATIONS · IntersectionObserver
    ============================================================ */
 const animTargets = document.querySelectorAll('.fade-up, .fade-in');
 
@@ -105,6 +105,6 @@ if ('IntersectionObserver' in window) {
 
   animTargets.forEach(el => observer.observe(el));
 } else {
-  // Fallback: navegadores antigos — mostrar tudo imediatamente
+  // Fallback: navegadores antigos, mostrar tudo imediatamente
   animTargets.forEach(el => el.classList.add('visible'));
 }

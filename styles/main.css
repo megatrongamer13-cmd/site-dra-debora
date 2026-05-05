@@ -1,5 +1,5 @@
 /* ============================================================
-   TOKENS — Paleta Amellora + Tipografia + Layout
+   TOKENS · Paleta Amellora + Tipografia + Layout
    ============================================================ */
 :root {
   /* Cores principais */
@@ -793,10 +793,11 @@ main {
 }
 
 .sobre__credentials li::before {
-  content: '—';
+  content: '·';
   position: absolute;
-  left: 0;
+  left: 4px;
   color: var(--color-primary);
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {
@@ -909,7 +910,7 @@ main {
 }
 
 /* ============================================================
-   RESULTADOS — ANTES E DEPOIS
+   RESULTADOS · ANTES E DEPOIS
    ============================================================ */
 .resultados {
   background: var(--color-background);
