@@ -1,9 +1,10 @@
 /* ============================================================
-   STICKY HEADER
+   HEADER STICKY
    ============================================================ */
 const header = document.getElementById('header');
 
 function updateHeader() {
+  if (!header) return;
   header.classList.toggle('scrolled', window.scrollY > 60);
 }
 
@@ -14,73 +15,96 @@ updateHeader();
    MOBILE MENU
    ============================================================ */
 const navToggle = document.getElementById('navToggle');
-const navMenu   = document.getElementById('navMenu');
+const navMenu = document.getElementById('navMenu');
+const navWrapper = navMenu ? navMenu.parentElement : null;
 
-navToggle.addEventListener('click', () => {
-  const isOpen = navMenu.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', String(isOpen));
-});
-
-// close on link click
-navMenu.querySelectorAll('.nav__link').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
+if (navToggle && navWrapper) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navWrapper.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
   });
-});
 
-// close on outside click
-document.addEventListener('click', e => {
-  if (!header.contains(e.target)) {
-    navMenu.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  }
-});
+  // fecha ao clicar em link
+  navMenu.querySelectorAll('.header__link').forEach(link => {
+    link.addEventListener('click', () => {
+      navWrapper.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
+    });
+  });
 
-/* ============================================================
-   SCROLL ANIMATIONS (IntersectionObserver)
-   ============================================================ */
-const animTargets = document.querySelectorAll('.fade-in, .fade-up');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+  // fecha ao clicar fora
+  document.addEventListener('click', e => {
+    if (!header.contains(e.target) && navWrapper.classList.contains('open')) {
+      navWrapper.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-animTargets.forEach(el => observer.observe(el));
+  // fecha com Esc
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navWrapper.classList.contains('open')) {
+      navWrapper.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
+      navToggle.focus();
+    }
+  });
+}
 
 /* ============================================================
    FAQ ACCORDION
    ============================================================ */
-document.querySelectorAll('.faq__question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item   = btn.closest('.faq__item');
-    const answer = item.querySelector('.faq__answer');
-    const isOpen = item.classList.contains('open');
+const faqItems = document.querySelectorAll('.faq-item');
 
-    // close all
-    document.querySelectorAll('.faq__item.open').forEach(openItem => {
-      openItem.classList.remove('open');
-      openItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
-      openItem.querySelector('.faq__answer').hidden = true;
+faqItems.forEach(item => {
+  const button = item.querySelector('.faq-item__question');
+  const answer = item.querySelector('.faq-item__answer');
+  if (!button || !answer) return;
+
+  button.addEventListener('click', () => {
+    const isOpen = item.dataset.open === 'true';
+
+    // fecha todos
+    faqItems.forEach(other => {
+      other.dataset.open = 'false';
+      const otherBtn = other.querySelector('.faq-item__question');
+      const otherAns = other.querySelector('.faq-item__answer');
+      if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      if (otherAns) otherAns.hidden = true;
     });
 
-    // open clicked (if it was closed)
+    // abre o clicado se estava fechado
     if (!isOpen) {
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
+      item.dataset.open = 'true';
+      button.setAttribute('aria-expanded', 'true');
       answer.hidden = false;
     }
   });
 });
 
 /* ============================================================
-   WHATSAPP FLOAT — appear after 2s
+   SCROLL ANIMATIONS — IntersectionObserver
    ============================================================ */
-setTimeout(() => {
-  document.getElementById('whatsappFloat').classList.add('visible');
-}, 2000);
+const animTargets = document.querySelectorAll('.fade-up, .fade-in');
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  animTargets.forEach(el => observer.observe(el));
+} else {
+  // Fallback: navegadores antigos — mostrar tudo imediatamente
+  animTargets.forEach(el => el.classList.add('visible'));
+}
