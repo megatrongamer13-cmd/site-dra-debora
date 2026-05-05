@@ -616,3 +616,77 @@ main {
     gap: var(--space-6);
   }
 }
+
+/* ============================================================
+   SOBRE
+   ============================================================ */
+.sobre {
+  background: var(--color-background);
+}
+
+.sobre__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.sobre__media {
+  aspect-ratio: 5 / 6;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+.sobre__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.sobre__text {
+  font-size: var(--fs-body-lg);
+  line-height: 1.7;
+  color: var(--neutral-700);
+  margin-bottom: var(--space-4);
+}
+
+.sobre__text em {
+  font-style: italic;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.sobre__credentials {
+  margin-block: var(--space-8);
+  padding: var(--space-6);
+  border-left: 2px solid var(--color-primary);
+  background: var(--white);
+  border-radius: var(--radius-md);
+}
+
+.sobre__credentials li {
+  font-size: var(--fs-body);
+  color: var(--color-secondary);
+  padding: var(--space-2) 0;
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.sobre__credentials li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+}
+
+@media (min-width: 1024px) {
+  .sobre__inner {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-16);
+  }
+  .sobre__media {
+    max-width: none;
+  }
+}
