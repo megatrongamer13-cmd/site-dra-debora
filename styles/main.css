@@ -1207,3 +1207,105 @@ main {
     padding: var(--space-16) var(--space-12);
   }
 }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--color-secondary);
+  color: var(--color-background);
+  padding-top: var(--space-16);
+}
+
+.footer a {
+  color: var(--color-background);
+  transition: color var(--transition-base);
+}
+.footer a:hover {
+  color: var(--color-accent);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+.footer__logo {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+.footer__logo em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.footer__tagline {
+  font-size: var(--fs-small);
+  color: var(--olive-mid);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-4);
+}
+
+.footer__credential {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive-mid);
+}
+
+.footer__title {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.footer__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer__contact p {
+  font-size: var(--fs-body);
+  margin-bottom: var(--space-3);
+  line-height: 1.6;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(253, 236, 229, 0.1);
+  padding-block: var(--space-6);
+}
+
+.footer__bottom-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-size: var(--fs-eyebrow);
+  color: var(--olive-mid);
+  text-align: center;
+}
+
+.footer__disclaimer {
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: var(--space-16);
+  }
+  .footer__bottom-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
