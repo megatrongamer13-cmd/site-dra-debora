@@ -513,11 +513,12 @@ main {
   font-style: italic;
   font-weight: 400;
   font-size: var(--fs-h1);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   color: var(--color-secondary);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-8);
   text-transform: lowercase;
+  text-wrap: balance;
 }
 
 .hero__title::first-letter {
@@ -561,12 +562,34 @@ main {
   font-weight: 500;
   color: var(--color-secondary);
   letter-spacing: 0.01em;
+  transition: color var(--transition-base);
+}
+
+.hero__badge:hover .hero__badge-icon {
+  color: var(--brown-medium);
+  transform: rotate(72deg);
 }
 
 .hero__badge-icon {
   color: var(--color-primary);
   font-size: 1rem;
   line-height: 1;
+  transition: transform 400ms var(--ease-spring),
+              color var(--transition-base);
+  animation: badge-twinkle 4s var(--ease-out-soft) infinite;
+}
+
+.hero__badge:nth-child(2) .hero__badge-icon { animation-delay: 1.3s; }
+.hero__badge:nth-child(3) .hero__badge-icon { animation-delay: 2.6s; }
+
+@keyframes badge-twinkle {
+  0%, 88%, 100% { opacity: 1; transform: scale(1); }
+  92% { opacity: 0.45; transform: scale(0.85); }
+  96% { opacity: 1; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__badge-icon { animation: none; }
 }
 
 .hero__media {
@@ -1121,6 +1144,18 @@ main {
   font-weight: 500;
   color: var(--color-secondary);
   min-height: 64px;
+  cursor: pointer;
+  transition: color var(--transition-base);
+}
+
+.faq-item__question:hover {
+  color: var(--color-primary);
+}
+
+.faq-item__question:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+  border-radius: var(--radius-md);
 }
 
 .faq-item__chevron {
