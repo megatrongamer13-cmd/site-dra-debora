@@ -1152,3 +1152,58 @@ main {
   color: var(--color-primary);
   font-weight: 500;
 }
+
+/* ============================================================
+   CTA FINAL
+   ============================================================ */
+.cta-final {
+  background: var(--color-background);
+  padding-block: var(--space-32);
+}
+
+.cta-final__inner {
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+  background: var(--white);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-300);
+}
+
+.cta-final__text {
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: var(--neutral-700);
+  margin-bottom: var(--space-4);
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.cta-final__urgency {
+  font-size: var(--fs-small);
+  font-style: italic;
+  color: var(--olive-light);
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+.cta-final__hours {
+  font-size: var(--fs-small);
+  color: var(--olive-light);
+  line-height: 1.6;
+  margin-block: var(--space-6) var(--space-4);
+}
+
+.cta-final__secondary {
+  display: inline-block;
+  font-size: var(--fs-small);
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .cta-final__inner {
+    padding: var(--space-16) var(--space-12);
+  }
+}
