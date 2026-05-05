@@ -53,3 +53,34 @@ if (navToggle && navWrapper) {
     }
   });
 }
+
+/* ============================================================
+   FAQ ACCORDION
+   ============================================================ */
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const button = item.querySelector('.faq-item__question');
+  const answer = item.querySelector('.faq-item__answer');
+  if (!button || !answer) return;
+
+  button.addEventListener('click', () => {
+    const isOpen = item.dataset.open === 'true';
+
+    // fecha todos
+    faqItems.forEach(other => {
+      other.dataset.open = 'false';
+      const otherBtn = other.querySelector('.faq-item__question');
+      const otherAns = other.querySelector('.faq-item__answer');
+      if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      if (otherAns) otherAns.hidden = true;
+    });
+
+    // abre o clicado se estava fechado
+    if (!isOpen) {
+      item.dataset.open = 'true';
+      button.setAttribute('aria-expanded', 'true');
+      answer.hidden = false;
+    }
+  });
+});
