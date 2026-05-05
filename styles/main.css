@@ -1309,3 +1309,60 @@ main {
     text-align: left;
   }
 }
+
+/* ============================================================
+   WHATSAPP FLOAT
+   ============================================================ */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  transition: transform 300ms var(--ease-spring),
+              box-shadow var(--transition-base);
+  animation: whatsapp-pulse 2.5s var(--ease-out-soft) infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-xl);
+  animation-play-state: paused;
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+}
+
+@keyframes whatsapp-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float {
+    animation: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .whatsapp-float {
+    bottom: 24px;
+    right: 24px;
+    width: 64px;
+    height: 64px;
+  }
+  .whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+  }
+}
