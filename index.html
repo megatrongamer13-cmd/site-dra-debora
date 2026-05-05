@@ -23,7 +23,38 @@
 </head>
 <body>
 
-  <!-- Conteúdo virá nas próximas tasks -->
+  <header class="header" id="header" role="banner">
+    <div class="container header__inner">
+      <a href="#inicio" class="header__logo" aria-label="Dra. Débora — Início">
+        Dra. <em>Débora</em>
+      </a>
+
+      <nav class="header__nav" aria-label="Navegação principal">
+        <ul class="header__menu" id="navMenu" role="list">
+          <li><a href="#sobre" class="header__link">Sobre</a></li>
+          <li><a href="#procedimentos" class="header__link">Procedimentos</a></li>
+          <li><a href="#processo" class="header__link">Como Funciona</a></li>
+          <li><a href="#depoimentos" class="header__link">Depoimentos</a></li>
+          <li><a href="#faq" class="header__link">Dúvidas</a></li>
+        </ul>
+      </nav>
+
+      <a href="https://wa.me/5531999999999?text=Ol%C3%A1%2C+gostaria+de+agendar+minha+avalia%C3%A7%C3%A3o+gratuita."
+         class="btn btn--primary header__cta"
+         target="_blank" rel="noopener noreferrer">
+        Agendar
+      </a>
+
+      <button class="header__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+  </main>
 
   <script src="scripts/main.js" defer></script>
 </body>
