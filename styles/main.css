@@ -187,14 +187,33 @@ input, textarea, select {
 }
 
 .section__eyebrow {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
   font-family: var(--font-body);
   font-size: var(--fs-eyebrow);
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-primary);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.section__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transform: scaleX(0.6);
+  transition: transform 600ms var(--ease-out-soft);
+}
+
+.section__header:hover .section__eyebrow::before,
+.fade-in.visible .section__eyebrow::before,
+.fade-up.visible .section__eyebrow::before {
+  transform: scaleX(1);
 }
 
 .section__title {
@@ -238,11 +257,12 @@ input, textarea, select {
 .fade-up,
 .fade-in {
   opacity: 0;
-  transition: opacity 800ms var(--ease-out-soft), transform 800ms var(--ease-out-soft);
+  transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-up {
-  transform: translateY(24px);
+  transform: translateY(28px);
 }
 
 .fade-up.visible,
@@ -250,6 +270,18 @@ input, textarea, select {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Stagger editorial: cada filho fade-up dentro do mesmo container ganha delay incremental */
+.fade-up:nth-of-type(2),
+.fade-in:nth-of-type(2) { transition-delay: 80ms; }
+.fade-up:nth-of-type(3),
+.fade-in:nth-of-type(3) { transition-delay: 160ms; }
+.fade-up:nth-of-type(4),
+.fade-in:nth-of-type(4) { transition-delay: 240ms; }
+.fade-up:nth-of-type(5),
+.fade-in:nth-of-type(5) { transition-delay: 320ms; }
+.fade-up:nth-of-type(6),
+.fade-in:nth-of-type(6) { transition-delay: 400ms; }
 
 /* Visually hidden (acessibilidade) */
 .sr-only {
@@ -673,6 +705,17 @@ main {
   line-height: 1.7;
   color: var(--neutral-700);
   margin-bottom: var(--space-4);
+}
+
+.sobre__text:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  float: left;
+  padding: 6px 12px 0 0;
+  color: var(--color-primary);
 }
 
 .sobre__text em {
