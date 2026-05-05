@@ -542,6 +542,40 @@ main {
   padding-bottom: var(--space-24);
   background: var(--color-background);
   overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+  animation: loop 20s infinite;
+}
+
+@keyframes loop {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(-1); }
+}
+
+.hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 236, 229, 0.78) 0%,
+    rgba(253, 236, 229, 0.65) 50%,
+    rgba(253, 236, 229, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { animation: none; }
 }
 
 .hero__inner {
