@@ -927,3 +927,78 @@ main {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* ============================================================
+   PROCESSO
+   ============================================================ */
+.processo {
+  background: var(--color-background);
+}
+
+.processo-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  margin-bottom: var(--space-16);
+  position: relative;
+}
+
+.processo-step {
+  position: relative;
+  padding-left: var(--space-16);
+}
+
+.processo-step__number {
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.processo-step__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.processo-step__text {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--neutral-700);
+}
+
+.processo-cta {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .processo-steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+  .processo-step {
+    padding-left: 0;
+    padding-top: var(--space-16);
+  }
+  .processo-step__number {
+    top: 0;
+    font-size: 5rem;
+  }
+  /* Conector horizontal entre passos */
+  .processo-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: var(--space-8);
+    right: calc(var(--space-8) * -0.5);
+    width: var(--space-8);
+    height: 1px;
+    border-top: 1px dashed var(--neutral-300);
+  }
+}
