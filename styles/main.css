@@ -81,9 +81,11 @@
 
   /* Transições */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --transition-base: 300ms var(--ease-out-soft);
+  --transition-base: 220ms var(--ease-out-strong);
   --transition-slow: 600ms var(--ease-out-soft);
+  --transition-press: 110ms var(--ease-out-strong);
 
   /* Header */
   --nav-h: 72px;
@@ -333,7 +335,16 @@ input, textarea, select {
   transform: translateY(-2px);
 }
 .btn--primary:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0) scale(0.97);
+  transition: transform var(--transition-press),
+              box-shadow var(--transition-press),
+              background-color var(--transition-press);
+}
+
+.btn--secondary:active,
+.btn--ghost:active {
+  transform: scale(0.97);
+  transition: transform var(--transition-press);
 }
 
 .btn--secondary {
@@ -777,15 +788,18 @@ main {
   border-radius: var(--radius-lg);
   padding: var(--space-8) var(--space-6);
   box-shadow: var(--shadow-xs);
-  transition: transform 400ms var(--ease-spring),
-              box-shadow 400ms var(--ease-out-soft),
-              border-color 300ms var(--ease-out-soft);
+  transition: transform 200ms var(--ease-out-strong),
+              box-shadow 200ms var(--ease-out-strong),
+              border-color 200ms var(--ease-out-strong);
 }
 
 .proc-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
+  transition: transform 400ms var(--ease-spring),
+              box-shadow 400ms var(--ease-out-soft),
+              border-color 300ms var(--ease-out-soft);
 }
 
 .proc-card__icon {
